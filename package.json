@@ -1,0 +1,11 @@
+{
+    "name": "docker-semantic-release",
+    "dependencies": {
+        "@semantic-release/changelog": "^5.0.1",
+        "@semantic-release/commit-analyzer": "^8.0.1",
+        "@semantic-release/exec": "^5.0.0",
+        "@semantic-release/git": "^v9.0.0",
+        "@semantic-release/release-notes-generator": "^9.0.2",
+        "semantic-release": "^17.4.2"
+    }
+}

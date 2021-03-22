@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  docker:
+    name: Docker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          export TAG="17.4.2-alpine3.11" && \
+          export REPO=$(echo ${GITHUB_REPOSITORY} | tr '[:upper:]' '[:lower:]') && \
+          echo ${{ secrets.PA_TOKEN }} | docker login ghcr.io -u ${{ secrets.PA_USERNAME }} --password-stdin && \
+          docker build . -t ghcr.io/${REPO}:latest && \
+          docker tag ghcr.io/${REPO}:latest ghcr.io/${REPO}:${TAG} && \
+          docker push ghcr.io/${REPO}:latest && \
+          docker push ghcr.io/${REPO}:${TAG}
